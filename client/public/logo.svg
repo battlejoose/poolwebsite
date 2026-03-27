@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <!-- Background box for icon -->
+  <rect x="0" y="8" width="64" height="64" rx="8" fill="#1B3A5C"/>
+
+  <!-- Sun -->
+  <circle cx="44" cy="24" r="12" fill="#F5C542"/>
+
+  <!-- Palm tree trunk -->
+  <path d="M30 58 L34 32" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Palm fronds -->
+  <path d="M34 32 C28 26 18 28 14 32" stroke="#2E7D32" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M34 32 C36 24 32 18 26 16" stroke="#2E7D32" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M34 32 C40 26 42 20 38 16" stroke="#2E7D32" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Umbrella -->
+  <line x1="46" y1="30" x2="46" y2="52" stroke="#C4A12E" stroke-width="1.8"/>
+  <path d="M36 30 Q41 20 46 30 Q51 20 56 30Z" fill="#E8A020"/>
+
+  <!-- Waves -->
+  <path d="M8 52 Q16 46 24 52 Q32 58 40 52 Q48 46 56 52" stroke="#5BB8D4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M8 58 Q16 52 24 58 Q32 64 40 58 Q48 52 56 58" stroke="#87CEEB" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Bubbles -->
+  <circle cx="52" cy="42" r="2.5" fill="#87CEEB" opacity="0.6"/>
+  <circle cx="56" cy="36" r="1.8" fill="#87CEEB" opacity="0.4"/>
+
+  <!-- Divider line -->
+  <line x1="74" y1="16" x2="74" y2="64" stroke="#C8DAE4" stroke-width="1"/>
+
+  <!-- L&D text -->
+  <text x="86" y="42" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#1B3A5C">L&amp;D</text>
+
+  <!-- POOLS text -->
+  <text x="86" y="62" font-family="Arial, 'DM Sans', sans-serif" font-size="18" font-weight="700" fill="#2389AD" letter-spacing="4">POOLS</text>
+</svg>

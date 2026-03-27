@@ -111,7 +111,7 @@ function Home() {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Link to="/book-online" className="btn btn--primary">
-              <span>View Our Services</span>
+              <span>Build a Pool</span>
               <ChevronRight size={18} />
             </Link>
             <a href="tel:9565610967" className="btn btn--secondary">

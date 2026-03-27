@@ -1,62 +1,51 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Waves, Wrench, Settings, ChevronRight, X, Check, DollarSign, Clock, Star } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { MapPin, Phone, Mail, User, Send, Check, Ruler } from 'lucide-react'
 import './BookOnline.css'
 
-const services = [
-  {
-    id: 1,
-    title: 'Weekly Pool Service',
-    description: 'Crystal-clear pool maintenance',
-    details: 'Comprehensive weekly swimming pool service including thorough chemical balancing, skimming, and vacuuming to ensure crystal-clear water for residents and guests alike.',
-    price: 100,
-    icon: Waves,
-    features: ['Chemical Balancing', 'Surface Skimming', 'Vacuum & Brushing', 'Filter Check'],
-    duration: 'Weekly',
-  },
-  {
-    id: 2,
-    title: 'Pool Repairs',
-    description: 'Expert pool repair solutions',
-    details: 'Precision diagnostics and repairs for pumps, filters, heaters, and advanced salt systems. Our technical approach ensures your pool equipment operates with maximum efficiency.',
-    price: 150,
-    icon: Wrench,
-    features: ['Pump Diagnostics', 'Filter Repair', 'Heater Service', 'Salt System Fix'],
-    duration: 'Per Visit',
-  },
-  {
-    id: 3,
-    title: 'Equipment Check',
-    description: 'Efficient pool equipment maintenance',
-    details: 'Full inspection of pumps, filters, heaters, and salt systems. We identify potential issues before they become costly repairs.',
-    price: 75,
-    icon: Settings,
-    features: ['Full Inspection', 'Performance Report', 'Preventive Tips', 'Parts Assessment'],
-    duration: 'Per Visit',
-  },
-]
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 25 },
-  visible: (i = 0) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.5, delay: i * 0.12 }
-  })
-}
-
 function BookOnline() {
-  const [selectedService, setSelectedService] = useState(null)
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', date: '', message: '' })
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    area_length: '',
+    area_width: '',
+    area_description: '',
+  })
   const [submitted, setSubmitted] = useState(false)
+
+  const set = (field, value) => setForm(prev => ({ ...prev, [field]: value }))
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
-    setTimeout(() => {
-      setSelectedService(null)
-      setSubmitted(false)
-      setFormData({ name: '', email: '', phone: '', date: '', message: '' })
-    }, 3000)
+  }
+
+  if (submitted) {
+    return (
+      <div className="book">
+        <section className="book__hero">
+          <div className="book__hero-bg" />
+          <div className="container book__hero-content">
+            <motion.div
+              className="book__success"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="book__success-icon"><Check size={40} /></div>
+              <h2>Quote Request Submitted!</h2>
+              <p>Thank you, {form.name || 'friend'}! We'll review your info and get back to you within 1–2 business days with a quote.</p>
+              <a href="tel:9565610967" className="btn btn--primary">
+                <Phone size={16} />
+                <span>Call Us: (956) 561-0967</span>
+              </a>
+            </motion.div>
+          </div>
+        </section>
+      </div>
+    )
   }
 
   return (
@@ -70,7 +59,7 @@ function BookOnline() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Schedule Your Service
+            Get a Quote
           </motion.span>
           <motion.h1
             className="book__title"
@@ -78,7 +67,7 @@ function BookOnline() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Book Online
+            Build a Pool
           </motion.h1>
           <motion.p
             className="book__subtitle"
@@ -86,7 +75,7 @@ function BookOnline() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            Choose a service below and book your appointment in seconds.
+            Tell us about the area and we'll put together a personalized quote.
           </motion.p>
         </div>
         <div className="book__wave">
@@ -96,159 +85,119 @@ function BookOnline() {
         </div>
       </section>
 
-      <section className="book__services">
+      <section className="quote">
         <div className="container">
-          <div className="book__grid">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.id}
-                className="book-card"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                custom={i}
-                viewport={{ once: true }}
-              >
-                <div className="book-card__header">
-                  <div className="book-card__icon">
-                    <service.icon size={26} />
+          <motion.form
+            className="quote__form"
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <div className="quote__section">
+              <h2 className="quote__section-title">
+                <MapPin size={20} />
+                About the Area
+              </h2>
+              <p className="quote__section-desc">Where will the pool go? Give us the dimensions or describe the space.</p>
+
+              <div className="quote__fields">
+                <div className="quote__field">
+                  <label><MapPin size={14} /> Property Address</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="123 Beach Blvd, South Padre Island, TX"
+                    value={form.address}
+                    onChange={e => set('address', e.target.value)}
+                  />
+                </div>
+
+                <div className="quote__row">
+                  <div className="quote__field">
+                    <label><Ruler size={14} /> Area Length (ft)</label>
+                    <input
+                      type="number"
+                      placeholder="e.g. 40"
+                      value={form.area_length}
+                      onChange={e => set('area_length', e.target.value)}
+                    />
                   </div>
-                  <div className="book-card__badge">
-                    <Clock size={12} />
-                    <span>{service.duration}</span>
+                  <div className="quote__field">
+                    <label><Ruler size={14} /> Area Width (ft)</label>
+                    <input
+                      type="number"
+                      placeholder="e.g. 25"
+                      value={form.area_width}
+                      onChange={e => set('area_width', e.target.value)}
+                    />
                   </div>
                 </div>
 
-                <h3 className="book-card__title">{service.title}</h3>
-                <p className="book-card__desc">{service.description}</p>
-
-                <div className="book-card__features">
-                  {service.features.map((f) => (
-                    <div key={f} className="book-card__feature">
-                      <Check size={14} />
-                      <span>{f}</span>
-                    </div>
-                  ))}
+                <div className="quote__field">
+                  <label>Describe the Area</label>
+                  <textarea
+                    rows={4}
+                    placeholder="Tell us about the space — backyard size, any slopes, fencing, access for equipment, or anything else that might help us give you a better quote."
+                    value={form.area_description}
+                    onChange={e => set('area_description', e.target.value)}
+                  />
                 </div>
+              </div>
+            </div>
 
-                <div className="book-card__footer">
-                  <div className="book-card__price">
-                    <span className="book-card__price-dollar">$</span>
-                    <span className="book-card__price-amount">{service.price}</span>
-                    <span className="book-card__price-label">USD</span>
+            <div className="quote__divider" />
+
+            <div className="quote__section">
+              <h2 className="quote__section-title">
+                <User size={20} />
+                Your Contact Info
+              </h2>
+
+              <div className="quote__fields">
+                <div className="quote__row">
+                  <div className="quote__field">
+                    <label><User size={14} /> Full Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="John Doe"
+                      value={form.name}
+                      onChange={e => set('name', e.target.value)}
+                    />
                   </div>
-                  <button
-                    className="btn btn--primary book-card__btn"
-                    onClick={() => setSelectedService(service)}
-                  >
-                    <span>Book Now</span>
-                    <ChevronRight size={16} />
-                  </button>
+                  <div className="quote__field">
+                    <label><Phone size={14} /> Phone</label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="(956) 555-1234"
+                      value={form.phone}
+                      onChange={e => set('phone', e.target.value)}
+                    />
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                <div className="quote__field">
+                  <label><Mail size={14} /> Email</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="john@email.com"
+                    value={form.email}
+                    onChange={e => set('email', e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" className="btn btn--primary quote__submit">
+              <span>Submit Quote Request</span>
+              <Send size={16} />
+            </button>
+          </motion.form>
         </div>
       </section>
-
-      <AnimatePresence>
-        {selectedService && (
-          <motion.div
-            className="modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => !submitted && setSelectedService(null)}
-          >
-            <motion.div
-              className="modal"
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 30 }}
-              transition={{ type: 'spring', damping: 25 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {submitted ? (
-                <div className="modal__success">
-                  <div className="modal__success-icon">
-                    <Check size={36} />
-                  </div>
-                  <h3>Booking Confirmed!</h3>
-                  <p>We'll reach out to confirm your {selectedService.title} appointment.</p>
-                </div>
-              ) : (
-                <>
-                  <div className="modal__header">
-                    <div>
-                      <h3 className="modal__title">{selectedService.title}</h3>
-                      <p className="modal__price">${selectedService.price} USD</p>
-                    </div>
-                    <button className="modal__close" onClick={() => setSelectedService(null)}>
-                      <X size={18} />
-                    </button>
-                  </div>
-
-                  <form className="modal__form" onSubmit={handleSubmit}>
-                    <div className="modal__field">
-                      <label>Full Name</label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    <div className="modal__row">
-                      <div className="modal__field">
-                        <label>Email</label>
-                        <input
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="john@email.com"
-                        />
-                      </div>
-                      <div className="modal__field">
-                        <label>Phone</label>
-                        <input
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="(956) 555-1234"
-                        />
-                      </div>
-                    </div>
-                    <div className="modal__field">
-                      <label>Preferred Date</label>
-                      <input
-                        type="date"
-                        required
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      />
-                    </div>
-                    <div className="modal__field">
-                      <label>Additional Notes</label>
-                      <textarea
-                        rows={3}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Any special requests or details..."
-                      />
-                    </div>
-                    <button type="submit" className="btn btn--primary modal__submit">
-                      <span>Confirm Booking</span>
-                      <Star size={16} />
-                    </button>
-                  </form>
-                </>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

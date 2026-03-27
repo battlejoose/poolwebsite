@@ -26,7 +26,7 @@ function Footer() {
           <div className="footer__col">
             <h4 className="footer__heading">Quick Links</h4>
             <Link to="/" className="footer__link">Home</Link>
-            <Link to="/book-online" className="footer__link">Book Online</Link>
+            <Link to="/book-online" className="footer__link">Build a Pool</Link>
             <a href="#services" className="footer__link">Our Services</a>
             <a href="#promise" className="footer__link">Our Promise</a>
           </div>

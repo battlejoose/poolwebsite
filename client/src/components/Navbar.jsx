@@ -37,7 +37,7 @@ function Navbar() {
             to="/book-online"
             className={`navbar__link ${location.pathname === '/book-online' ? 'navbar__link--active' : ''}`}
           >
-            Book Online
+            Build a Pool
           </Link>
           <a href="#services" className="navbar__link">Services</a>
           <a href="#promise" className="navbar__link">About</a>
@@ -67,7 +67,7 @@ function Navbar() {
             transition={{ duration: 0.3 }}
           >
             <Link to="/" className="navbar__mobile-link">Home</Link>
-            <Link to="/book-online" className="navbar__mobile-link">Book Online</Link>
+            <Link to="/book-online" className="navbar__mobile-link">Build a Pool</Link>
             <a href="#services" className="navbar__mobile-link">Services</a>
             <a href="#promise" className="navbar__mobile-link">About</a>
             <a href="tel:9565610967" className="navbar__mobile-cta">

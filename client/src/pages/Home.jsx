@@ -114,10 +114,10 @@ function Home() {
               <span>Build a Pool</span>
               <ChevronRight size={18} />
             </Link>
-            <a href="tel:9565610967" className="btn btn--secondary">
-              <Phone size={16} />
-              <span>Call Now</span>
-            </a>
+            <Link to="/thinking-about-a-pool" className="btn btn--secondary">
+              <span>I'm Thinking About a Pool</span>
+              <ChevronRight size={18} />
+            </Link>
           </motion.div>
 
           <motion.div

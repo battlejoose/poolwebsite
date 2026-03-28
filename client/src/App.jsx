@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import BookOnline from './pages/BookOnline'
+import ThinkingAboutAPool from './pages/ThinkingAboutAPool'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/book-online" element={<BookOnline />} />
+          <Route path="/thinking-about-a-pool" element={<ThinkingAboutAPool />} />
         </Routes>
       </main>
       <Footer />

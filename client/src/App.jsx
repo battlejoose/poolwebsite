@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import BookOnline from './pages/BookOnline'
 import ThinkingAboutAPool from './pages/ThinkingAboutAPool'
+import ServicePage from './pages/ServicePage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/book-online" element={<BookOnline />} />
           <Route path="/thinking-about-a-pool" element={<ThinkingAboutAPool />} />
+          <Route path="/services/:slug" element={<ServicePage />} />
         </Routes>
       </main>
       <Footer />

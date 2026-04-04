@@ -28,10 +28,10 @@ function AnimatedSection({ children, className }) {
 }
 
 const services = [
-  { icon: Waves, title: 'Weekly Maintenance', desc: 'Comprehensive weekly swimming pool service including thorough chemical balancing, skimming, and vacuuming to ensure crystal-clear water for residents and guests alike.' },
-  { icon: Wrench, title: 'Technical Repairs', desc: 'Precision diagnostics and repairs for pumps, filters, heaters, and advanced salt systems. Our technical approach ensures your pool equipment operates with maximum efficiency.' },
-  { icon: Sparkles, title: 'Deep Cleaning', desc: 'Intensive specialized cleaning services including tile scrubbing and debris removal. We restore the structural beauty of your pool through meticulous attention to every surface.' },
-  { icon: Building2, title: 'Rental Property Care', desc: 'Reliable, high-frequency maintenance plans designed for vacation rental properties. We synchronize our service schedules to ensure perfect pool conditions between guest rotations.' },
+  { icon: Waves, slug: 'weekly-maintenance', title: 'Weekly Maintenance', desc: 'Comprehensive weekly swimming pool service including thorough chemical balancing, skimming, and vacuuming to ensure crystal-clear water for residents and guests alike.' },
+  { icon: Wrench, slug: 'technical-repairs', title: 'Technical Repairs', desc: 'Precision diagnostics and repairs for pumps, filters, heaters, and advanced salt systems. Our technical approach ensures your pool equipment operates with maximum efficiency.' },
+  { icon: Sparkles, slug: 'deep-cleaning', title: 'Deep Cleaning', desc: 'Intensive specialized cleaning services including tile scrubbing and debris removal. We restore the structural beauty of your pool through meticulous attention to every surface.' },
+  { icon: Building2, slug: 'rental-property-care', title: 'Rental Property Care', desc: 'Reliable, high-frequency maintenance plans designed for vacation rental properties. We synchronize our service schedules to ensure perfect pool conditions between guest rotations.' },
 ]
 
 const promises = [
@@ -167,21 +167,25 @@ function Home() {
 
           <div className="services__grid">
             {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                className="service-card"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                custom={i}
-                viewport={{ once: true, margin: '-60px' }}
-              >
-                <div className="service-card__icon-wrap">
-                  <service.icon size={26} />
-                </div>
-                <h3 className="service-card__title">{service.title}</h3>
-                <p className="service-card__desc">{service.desc}</p>
-              </motion.div>
+              <Link key={service.title} to={`/services/${service.slug}`} className="service-card__link">
+                <motion.div
+                  className="service-card"
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  custom={i}
+                  viewport={{ once: true, margin: '-60px' }}
+                >
+                  <div className="service-card__icon-wrap">
+                    <service.icon size={26} />
+                  </div>
+                  <h3 className="service-card__title">{service.title}</h3>
+                  <p className="service-card__desc">{service.desc}</p>
+                  <span className="service-card__cta">
+                    Get Started <ChevronRight size={16} />
+                  </span>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
